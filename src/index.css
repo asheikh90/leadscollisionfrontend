@@ -3,59 +3,218 @@
 @tailwind utilities;
 
 @layer base {
-  html { scroll-behavior: smooth; }
-  body { font-family: 'Inter', system-ui, sans-serif; }
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
 }
 
 @layer components {
   .glass-panel {
     @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl;
   }
-
+  
   .glass-panel-dark {
     @apply bg-gray-900/90 backdrop-blur-xl border border-gray-700/30 rounded-2xl shadow-2xl;
   }
 
-  /* primary CTA button */
+  .neural-glass {
+    @apply bg-gradient-to-br from-cyan-500/10 via-purple-500/5 to-pink-500/10 backdrop-blur-2xl border border-cyan-400/20 rounded-3xl shadow-2xl;
+    box-shadow: 
+      0 0 50px rgba(0, 255, 255, 0.1),
+      inset 0 0 50px rgba(255, 0, 255, 0.05),
+      0 0 100px rgba(0, 255, 255, 0.05);
+  }
+
+  .quantum-panel {
+    @apply bg-gradient-to-br from-purple-900/20 via-blue-900/10 to-cyan-900/20 backdrop-blur-3xl border border-cyan-300/30 rounded-3xl shadow-2xl;
+    box-shadow: 
+      0 0 60px rgba(0, 255, 255, 0.2),
+      inset 0 0 60px rgba(128, 0, 255, 0.1),
+      0 0 120px rgba(255, 0, 255, 0.1);
+    animation: neural-pulse 3s ease-in-out infinite;
+  }
+
+  .holographic-card {
+    @apply bg-gradient-to-br from-cyan-500/15 via-transparent to-purple-500/15 backdrop-blur-2xl border border-cyan-400/30 rounded-2xl;
+    box-shadow: 
+      0 0 40px rgba(0, 255, 255, 0.15),
+      inset 0 0 40px rgba(255, 0, 255, 0.08);
+    animation: hologram 4s ease-in-out infinite;
+  }
+  
   .btn-primary {
-    /* removed animate-pulse-glow; requires a custom keyframe */
-    @apply bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800
-           text-white font-bold px-8 py-4 rounded-xl shadow-lg hover:shadow-2xl transform hover:scale-105
-           transition-all duration-300;
+    @apply bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white font-bold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 animate-pulse-glow;
   }
-
+  
   .btn-secondary {
-    @apply bg-white/10 backdrop-blur-sm border border-white/30 hover:bg-white/20
-           text-white font-bold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105
-           transition-all duration-300;
+    @apply bg-white/10 backdrop-blur-sm border border-white/30 hover:bg-white/20 text-white font-bold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300;
   }
-
+  
   .btn-cta {
-    /* changed hover:to-accent-700 -> hover:to-accent-600 (700 not defined) */
-    @apply bg-gradient-to-r from-accent-500 to-accent-600 hover:from-accent-600 hover:to-accent-600
-           text-black font-black px-10 py-5 rounded-xl shadow-xl hover:shadow-2xl transform hover:scale-105
-           transition-all duration-300 text-lg;
+    @apply bg-gradient-to-r from-accent-500 to-accent-600 hover:from-accent-600 hover:to-accent-700 text-black font-black px-10 py-5 rounded-xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 text-lg;
   }
 
-  .section-padding { @apply px-4 sm:px-6 lg:px-8 py-16 lg:py-24; }
+  .btn-neural {
+    @apply bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-400 hover:to-purple-500 text-white font-black px-8 py-4 rounded-2xl shadow-2xl hover:shadow-cyan-500/25 transform hover:scale-110 transition-all duration-300;
+    box-shadow: 
+      0 0 30px rgba(0, 255, 255, 0.3),
+      inset 0 0 30px rgba(255, 0, 255, 0.1);
+    animation: neural-pulse 2s ease-in-out infinite;
+  }
 
+  .btn-quantum {
+    @apply bg-gradient-to-r from-purple-600 via-pink-600 to-cyan-600 hover:from-purple-500 hover:via-pink-500 hover:to-cyan-500 text-white font-black px-8 py-4 rounded-2xl shadow-2xl transform hover:scale-110 transition-all duration-300;
+    background-size: 200% 200%;
+    animation: energy-flow 3s ease-in-out infinite;
+    box-shadow: 
+      0 0 40px rgba(255, 0, 255, 0.4),
+      0 0 80px rgba(0, 255, 255, 0.2);
+  }
+  
+  .section-padding {
+    @apply px-4 sm:px-6 lg:px-8 py-16 lg:py-24;
+  }
+  
   .chat-bubble {
     @apply bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-4 shadow-lg;
   }
-
+  
   .chat-bubble-ai {
     @apply bg-primary-600/20 backdrop-blur-sm border border-primary-500/30 rounded-2xl p-4 shadow-lg;
   }
-
+  
   .typing-indicator::after {
     content: '|';
     animation: typing 1s infinite;
   }
+
+  .matrix-bg {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .matrix-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 20% 20%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(255, 0, 255, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 40% 60%, rgba(0, 255, 0, 0.05) 0%, transparent 50%);
+    animation: quantum-shift 8s ease-in-out infinite;
+  }
+
+  .neural-grid {
+    background-image: 
+      linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: energy-flow 10s linear infinite;
+  }
+
+  .data-stream {
+    position: absolute;
+    width: 2px;
+    height: 100px;
+    background: linear-gradient(to bottom, transparent, rgba(0, 255, 255, 0.8), transparent);
+    animation: data-stream 15s linear infinite;
+  }
+
+  .particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.8) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: particle-float 8s ease-in-out infinite;
+  }
+
+  .scan-line {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.8), transparent);
+    animation: scan-line 3s linear infinite;
+  }
+
+  .hologram-text {
+    background: linear-gradient(45deg, #00ffff, #ff00ff, #00ff00, #ffff00);
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: energy-flow 3s ease-in-out infinite;
+    text-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+  }
+
+  .cyber-border {
+    position: relative;
+  }
+
+  .cyber-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 2px;
+    background: linear-gradient(45deg, #00ffff, #ff00ff, #00ff00, #ffff00);
+    border-radius: inherit;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    animation: energy-flow 3s linear infinite;
+  }
+
+  .neural-connection {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.6), transparent);
+    transform-origin: left;
+    animation: data-stream 5s ease-in-out infinite;
+  }
+
+  .quantum-orb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.8) 0%, rgba(255, 0, 255, 0.4) 50%, transparent 100%);
+    box-shadow: 
+      0 0 20px rgba(0, 255, 255, 0.6),
+      0 0 40px rgba(255, 0, 255, 0.3);
+    animation: orbit 10s linear infinite;
+  }
+
+  .energy-pulse {
+    animation: neural-pulse 2s ease-in-out infinite;
+  }
+
+  .glitch-text {
+    animation: cyber-glitch 0.3s ease-in-out infinite;
+  }
 }
 
-/* simple keyframe for the typing indicator caret */
-@keyframes typing {
-  0% { opacity: .2; }
-  50% { opacity: 1; }
-  100% { opacity: .2; }
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #00ffff, #ff00ff);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #00e6e6, #e600e6);
 }

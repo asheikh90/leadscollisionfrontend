@@ -1,34 +1,35 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { MessageSquare, Calendar, Phone } from 'lucide-react'
+import { ArrowRight, TrendingUp } from 'lucide-react'
 
 const StickyBottomBar = () => {
-  const scrollToDemo = () => {
-    document.getElementById('demo')?.scrollIntoView({ behavior: 'smooth' })
-  }
-
   return (
     <motion.div
       initial={{ y: 100 }}
       animate={{ y: 0 }}
-      className="fixed bottom-0 left-0 right-0 z-50 p-4 bg-gray-900/95 backdrop-blur-xl border-t border-gray-700/50"
+      className="fixed bottom-0 left-0 right-0 z-50 glass-panel-dark border-t border-gray-700/50 p-4"
     >
-      <div className="max-w-4xl mx-auto flex flex-col sm:flex-row gap-3 justify-center items-center">
-        <button 
-          onClick={scrollToDemo}
-          className="btn-cta flex items-center space-x-2 w-full sm:w-auto"
-        >
-          <MessageSquare className="h-5 w-5" />
-          <span>Try Live Demo</span>
-        </button>
-        <button className="btn-secondary flex items-center space-x-2 w-full sm:w-auto">
-          <Calendar className="h-5 w-5" />
-          <span>Book A Call</span>
-        </button>
-        <button className="btn-secondary flex items-center space-x-2 w-full sm:w-auto">
-          <Phone className="h-5 w-5" />
-          <span>Text 267-212-1034</span>
-        </button>
+      <div className="max-w-7xl mx-auto flex items-center justify-between">
+        <div className="flex-1">
+          <div className="text-white font-black text-lg">Ready to 10x your collision shop?</div>
+          <div className="text-gray-300 font-medium">Join 2,400+ shops using AI to book more cars</div>
+        </div>
+        
+        <div className="flex items-center space-x-4">
+          <Link 
+            to="/dashboard" 
+            className="btn-secondary flex items-center space-x-2"
+          >
+            <TrendingUp className="h-4 w-4" />
+            <span>Dashboard</span>
+          </Link>
+          
+          <button className="btn-cta flex items-center space-x-2">
+            <span>Start Free Trial</span>
+            <ArrowRight className="h-4 w-4" />
+          </button>
+        </div>
       </div>
     </motion.div>
   )
